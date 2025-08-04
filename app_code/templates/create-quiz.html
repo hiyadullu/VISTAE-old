@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Quiz - Upload PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    input[type="file"] {
+      margin: 1rem 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .message {
+      margin-top: 1rem;
+      color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Upload PDF to Create Quiz</h2>
+    <p>Select a PDF file containing the course content or questions.</p>
+
+    <form id="uploadForm">
+      <input type="file" id="pdfFile" accept="application/pdf" required><br>
+      <button type="submit">Upload</button>
+    </form>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const file = document.getElementById('pdfFile').files[0];
+
+      if (!file) {
+        message.textContent = "Please select a PDF file.";
+        return;
+      }
+
+      message.textContent = `Successfully uploaded: ${file.name}`;
+      alert("Quiz generation will begin based on the uploaded PDF.");
+    });
+  </script>
+</body>
+</html>
